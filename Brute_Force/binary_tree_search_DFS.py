@@ -1,5 +1,4 @@
 # 전위 순회(preorder traverse)
-
 def DFS(v):  # v : vertex(=node)
     if v > 7:  # 최대 노드를 넘어가면 종료
         return
