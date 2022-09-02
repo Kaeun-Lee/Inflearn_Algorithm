@@ -15,9 +15,8 @@ def DFS(l, sum):
         if l < res:
             res = l
     else:
-        for i in range(n):  # 동전의 종류 개수만큼. 0 1 2
+        for i in range(n):  # 동전의 종류 개수만큼 0 1 2
             DFS(l + 1, sum + a[i])
-
 
 
 if __name__ == "__main__":
