@@ -17,11 +17,11 @@ def DFS(l, sum, tsum): # l : 각 바둑이 무게에 접근하는 idx, sum : 내
 
 if __name__ == "__main__":
     c, n = map(int, input().split())
-    a = [0] * n  # 바둑이 각각의 무게를 저장할 list
+    a = [0] * n           # 바둑이 각각의 무게를 저장할 list
     result = -2147000000  # 아주 작은 값으로 초기화
-    for i in range(n): # 0 1 2 3 4
+    for i in range(n):    # 0 1 2 3 4
         a[i] = int(input())
-    total = sum(a)  # 바둑이 총합
+    total = sum(a)        # 바둑이 총합
     DFS(0, 0, 0)
     print(result)
 
