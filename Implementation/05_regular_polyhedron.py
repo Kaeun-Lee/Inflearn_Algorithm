@@ -53,6 +53,6 @@ for i in range(n + m + 1):
 # n, m = 8 8
 # result : 9
 
-# test case 1
+# test case 3
 # n, m = 12 20
 # result : 13 14 15 16 17 18 19 20 21
