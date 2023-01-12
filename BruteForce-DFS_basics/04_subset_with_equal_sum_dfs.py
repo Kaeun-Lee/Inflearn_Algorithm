@@ -70,9 +70,9 @@ import sys
 
 
 def DFS(l, sum):
-    if l == n:
-        if sum > (total // 2):  # total이 홀수일 수 있으므로 ==가 아닌 >를 사용
+    if sum > (total // 2):  # total이 홀수일 수 있으므로 ==가 아닌 >를 사용
             return  # sum이 total // 2를 넘어가면, 그 밑으로 내려갈 필요가 없음
+    if l == n:
         if sum == (total - sum):
             print("YES")
             sys.exit(0)
