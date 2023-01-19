@@ -51,19 +51,19 @@ if __name__ == "__main__":
 
 
 # test_case 1
-# n, m = 5 3
+# n, k = 5 3
 # nums = 2 4 5 8 12
-# k = 6
+# m = 6
 # result : 2
 
 # test_case 2
-# n, m = 7 3
+# n, k = 7 3
 # nums = 2 4 5 8 12 7 13
-# k = 6
+# m = 6
 # result : 5
 
 # test_case 3
-# n, m = 10 3
+# n, k = 10 3
 # nums = 2 4 5 8 12 7 13 3 6 16
-# k = 3
+# m = 3
 # result : 42
