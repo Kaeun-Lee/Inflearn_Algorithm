@@ -30,7 +30,6 @@ for i in range(n):
     dia_sum2 += g[i][n - i - 1]
 dia_sums.append(dia_sum1)
 dia_sums.append(dia_sum2)
-
 print(max(max(row_sums), max(col_sums), max(dia_sums)))
 
 
@@ -57,7 +56,6 @@ if dia_sum1 > largest:
     largest = dia_sum1
 if dia_sum2 > largest:
     largest = dia_sum2
-
 print(largest)
 
 

@@ -28,7 +28,6 @@ for i in range(n):
     else:  # 범위 좁아짐
         s += 1
         e -= 1
-
 print(res)
 
 
