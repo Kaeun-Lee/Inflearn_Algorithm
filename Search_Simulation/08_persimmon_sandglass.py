@@ -12,7 +12,7 @@
 # 회고 : 모래시계 모양의 영역을 탐색하는 방법은 알았으나 회전하는 방법을 생각하지 못함
 #        append, pop, insert로 구현할 수 있는데, idx를 이용해 하나씩 다 바꿔주는 복잡한 방법만 생각함
 
-# My_Solution
+# Solution_1
 import sys
 
 sys.stdin = open("input.txt", "r")
