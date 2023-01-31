@@ -1,27 +1,37 @@
 # 8. 뒤집은 소수
 # 문제 : N개의 자연수가 입력되면 각 자연수를 뒤집은 후 그 뒤집은 수가 소수이면 그 수를 출력
 #        예를 들어 32를 뒤집으면 23이고, 23은 소수이니 23을 출력함
-#        단, 910을 뒤집으면 19로 숫자화 해야 함. 첫 자리부터의 연속된 0을 무시함
+#        단, 910을 뒤집으면 19로 숫자화해야 함. 첫 자리부터의 연속된 0을 무시함
 #        뒤집는 함수인 def reverse(x)와 소수인지를 확인하는 함수 def isPrime(x)를 반드시 작성
 #        출력 순서는 입력된 순서대로 출력
-# 조건 : 첫 줄에 자연수의 개수 N(3 <= N <= 100)이 주어지고, 그 다음 줄에 N개의 자연수가 주어짐
+# 조건 : 첫 줄에 자연수의 개수 N(3 <= N <= 100)이 주어지고, 그다음 줄에 N개의 자연수가 주어짐
 #        각 자연수의 크기는 100,000를 넘지 않음
-# 회고 : 001처럼 1이 되는 경우를 제외해야 함. 902는 29가 아니라 209여야 함
-#       중간에 있는 0은 0으로 채워야 하고, 처음부터 연속되는 0만 제거해 줘야 함
+# 회고 : 첫 자리부터 연속되는 0만 제거하고, 중간에 나오는 0은 유지해야 함. ex. 100 -> 1, 902 -> 209
+#        첫 자리가 0인 경우, 0이 아닌 숫자가 있는 곳을 찾아서 for문의 시작점으로 정해줌
+#        1이 소수인지 아닌지 판별하는 코드도 isPrime 함수 내에 넣어줘야 함
+#        x를 10으로 나눈 나머지와 몫을 이용하여 식으로 쉽게 구할 수 있음
 
-# My_Solution
+# My_Solution -> (성공) -> 숫자를 문자열로 치환 후 뒤집음
 import math
-import sys
 
-sys.stdin = open("input.txt", "r")
+# import sys
+
+# sys.stdin = open("input.txt", "r")
 
 
 def reverse(x):
-    x = reversed(str(x))
+    x = list(reversed(str(x)))  # ["2", "3"]
     result = ""
-    for i in range(len(x)):
-        if i != "0":
-            result += i
+    start = 0
+
+    for i in range(len(x)):  # 첫 자리부터의 연속된 0이 끝나는 위치 찾기
+        if x[i] == "0":
+            start += 1
+        else:
+            break
+
+    for j in range(start, len(x)):
+        result += x[j]
     return int(result)
 
 
@@ -32,13 +42,40 @@ def isPrime(x):
     return True
 
 
-if __name__ == "__main__":
-    n = int(input())
-    nums = map(int, input().split())
-    for i in nums:  # 32
-        num = reverse(i)
-        if num != 1 and isPrime(num):
-            print(num, end=" ")
+n = int(input())
+nums = map(int, input().split())
+for i in nums:  # 32
+    num = reverse(i)
+    if num != 1 and isPrime(num):  # 숫자가 1이 아니거나 소수인 경우 출력
+        print(num, end=" ")
+
+
+# Solution_2 -> 숫자를 10으로 나눈 나머지와 몫을 이용하여 뒤집음
+def reverse(x):
+    res = 0
+    while x > 0:  # x가 0이 되면 break
+        t = x % 10  # x의 일의 자리 숫자
+        res = res * 10 + t
+        x = x // 10
+    return res
+
+
+def isPrime(x):
+    if x == 1:
+        return False
+    for i in range(2, x // 2 + 1):  # 약수는 1과 자기 자신을 제외하고 자신의 절반까지만 존재
+        if x % i == 0:
+            return False
+    else:
+        return True
+
+
+n = int(input())
+nums = list(map(int, input().split()))
+for x in nums:
+    tmp = reverse(x)
+    if isPrime(tmp):
+        print(tmp, end=" ")
 
 
 # test_case 1
