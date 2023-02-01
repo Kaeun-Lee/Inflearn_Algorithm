@@ -12,9 +12,8 @@
 #        x를 10으로 나눈 나머지와 몫을 이용하여 식으로 쉽게 구할 수 있음
 
 # My_Solution -> (성공) -> 숫자를 문자열로 치환 후 뒤집음
+import sys
 import math
-
-# import sys
 
 # sys.stdin = open("input.txt", "r")
 
