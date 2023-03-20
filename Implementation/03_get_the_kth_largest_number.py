@@ -10,7 +10,7 @@
 #        3중 for문과 range로 index 위치만 +1 해주며 각 자리의 숫자들을 바꿔줘야 하는 것을 생각하지 못함
 #        같은 숫자가 있으면 한 장만 가져야 함 -> set을 적용해서 하나의 숫자들로 만들고 내림차순 정렬해야 함
 
-# My_Solution -> (실패) 3중 for문에서 바로 k == 3 일 때의 sum을 구하면, k번째 큰 수가 아니라 그냥 k번째 수를 가져옴
+# My_Solution_1 -> (실패) 3중 for문에서 바로 k == 3 일 때의 sum을 구하면, k번째 큰 수가 아니라 그냥 k번째 수를 가져옴
 # 조건이 맞으면 NotImplementedError(선언되지 않은 에러)를 발생시켜 다중 for문을 빠져나옴
 n, k = map(int, input().split())
 numbers = list(map(int, input().split()))  # [13, 15, 34, 23, 45, 65, 33, 11, 26, 42]
@@ -28,6 +28,20 @@ try:
                     count += 1
 except:
     print(numbers[i] + numbers[j] + numbers[x])
+
+
+# My_Solution_2 -> (성공)
+n, k = map(int, input().split())
+nums = sorted(list(map(int, input().split())), reverse=True)
+sums = []
+
+for i in range(len(nums)):
+    for j in range(i + 1, len(nums)):
+        for l in range(j + 1, len(nums)):
+            three_sum = nums[i] + nums[j] + nums[l]
+            sums.append(three_sum)
+tmp = sorted(set(sums), reverse=True)
+print(tmp[k - 1])
 
 
 # Solution_1
