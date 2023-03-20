@@ -7,6 +7,7 @@
 
 # 회고 : 풀이 방법은 쉽게 생각해 냈으나, 모든 약수를 구하지 않아도 되는 방법을 생각하지 못함
 #        range는 1부터 시작하기 때문에 순서는 보장됨. 주어진 조건을 이용해 메모리와 시간을 아끼자
+#        n의 제곱근까지의 약수 쌍을 구하면 시간을 절약할 수 있음
 
 # My_Solution -> n의 모든 약수를 구함
 def kth_factor(n, k):
@@ -20,7 +21,7 @@ def kth_factor(n, k):
         return result[k - 1]
 
 
-# Solution_2 -> k번째 까지의 약수만 구함
+# Solution_2 -> k번째까지의 약수만 구함
 def kth_factor(n, k):
     cnt = 0
     for i in range(1, n + 1):
@@ -28,8 +29,20 @@ def kth_factor(n, k):
             cnt += 1
         if cnt == k:
             return i
-    else:
+    else:  # for문 도중 return되지 않은 경우, else문 실행
         return -1
+
+
+# Solution_3 -> n의 제곱근까지의 약수만 구하여 시간 절약
+n, k = map(int, input().split())
+result = []
+
+for i in range(1, int(n ** 0.5) + 1):
+    if n % i == 0:
+        result.extend((i, n // i))  # 약수 쌍을 모두 저장
+
+result = sorted(set(result))  # 16의 약수인 4의 경우 중복 제거
+print(result[k - 1] if len(result) >= k else -1)
 
 
 if __name__ == "__main__":
