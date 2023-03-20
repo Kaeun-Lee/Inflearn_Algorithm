@@ -37,7 +37,7 @@ def kth_factor(n, k):
 n, k = map(int, input().split())
 result = []
 
-for i in range(1, int(n ** 0.5) + 1):
+for i in range(1, int(n**0.5) + 1):
     if n % i == 0:
         result.extend((i, n // i))  # 약수 쌍을 모두 저장
 
