@@ -7,6 +7,7 @@
 #        두 번째 줄에 N개의 숫자가 차례로 주어짐
 
 # 회고 : 리스트 인덱싱에서 e를 입력하면 e - 1이 나오는데, 착각해서 e + 1을 입력했었음
+#        각 케이스 별 정답을 출력하는 것 말고도 한 번에 정답을 출력하는 코드도 알아두자
 
 # My_Solution
 def kth_number(numbers, s, e, k):
@@ -22,6 +23,21 @@ for t in range(T):
     num = num[s - 1 : e]
     num.sort()
     print(f"#{t + 1}", num[k - 1])
+
+
+# Solution_3 -> 정답을 한 번에 출력하는 경우
+t = int(input())
+total = []
+
+for _ in range(t):
+    n, s, e, k = map(int, input().split())
+    digits = list(map(int, input().split()))
+    total.append(([s, e, k], digits))
+
+for i in range(t):
+    s, e, k = total[i][0]
+    char = total[i][1]
+    print(f"#{i}", sorted(char[s - 1 : e])[k - 1])
 
 
 if __name__ == "__main__":
