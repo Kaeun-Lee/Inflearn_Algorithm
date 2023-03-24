@@ -11,7 +11,7 @@
 # max = -2147000000으로 하는 이유 : C++의 정수형은 4byte이고 2^31 숫자까지 저장됨(양수 쪽의 실제 최댓값은 2147483647)
 #                                  실제 범위는 음수 쪽으로 2^31, 양수 쪽으로 2^31 - 1(숫자 0이 하나를 차지함)임
 
-# My_Solution -> 문자열로 각 숫자를 분리한 뒤 더하기
+# My_Solution_1 -> (성공) 문자열로 각 숫자를 분리한 뒤 더하기
 def digit_sum(x):
     sum_list = []
     max = -2147000000
@@ -21,7 +21,6 @@ def digit_sum(x):
         for i in number:  # 1, 2, 5
             tmp += int(i)
         sum_list.append(tmp)
-        tmp = 0
 
     for i, s in enumerate(sum_list):
         if s > max:
@@ -35,7 +34,23 @@ numbers = list(input().split())  # 125 15232 97
 print(digit_sum(numbers))
 
 
-# Solution_2 -> 각 숫자를 10으로 나눈 나머지와 몫을 이용
+# My_Solution_2 -> list comprehension 이용
+def digit_sum(x):
+    n_sum = 0
+    while x:
+        n_sum += x % 10  # 나머지
+        x = x // 10  # 몫
+    return n_sum
+
+
+n = int(input())
+nums = list(map(int, input().split()))
+result = [(i, digit_sum(num)) for i, num in enumerate(nums)]
+result = sorted(result, key=lambda x: (x[-1], -x[0]), reverse=True)
+print(nums[result[0][0]])
+
+
+# Solution_3 -> 각 숫자를 10으로 나눈 나머지와 몫을 이용
 n = int(input())
 a = list(map(int, input().split()))
 
@@ -57,7 +72,7 @@ for x in a:  # list의 각 숫자에 접근
 print(result)
 
 
-# Solution_3 -> 문자열 이용
+# Solution_4 -> 문자열 이용
 n = int(input())
 a = list(map(int, input().split()))
 
