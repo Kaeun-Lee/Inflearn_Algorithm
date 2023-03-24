@@ -42,7 +42,7 @@ result = sorted(result, key=lambda x: (x[0], -x[1]), reverse=True)  # 높은 점
 print(avg, result[0][1] + 1)
 
 
-# Solution_2 -> half up 반올림, 하나의 for문으로 처리
+# Solution_1 -> half up 반올림, 하나의 for문으로 처리
 n = int(input())
 a = list(map(int, input().split()))
 ave = int((sum(a) / n) + 0.5)
@@ -62,7 +62,7 @@ for idx, x in enumerate(a):
 print(ave, res)
 
 
-# Solution_3 -> list comprehension 이용
+# Solution_2 -> list comprehension 이용
 n = int(input())
 scores = list(map(int, input().split()))
 mean_score = int((sum(scores) / n) + 0.5)  # mean_score = int(round((sum(scores) / n), 0)) -> (X)
