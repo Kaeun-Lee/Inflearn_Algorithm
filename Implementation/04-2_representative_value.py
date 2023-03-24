@@ -7,6 +7,7 @@
 #        학생의 번호는 앞에서부터 1로 시작해서 N까지임
 # 회고 : for문 하나로 구현하는 방법을 생각하지 못해 2개를 사용함
 #        평균과의 최소 거리를 구하면서 거리가 같은 경우, 숫자가 클 때만 바꿔주면 가장 먼저 나온 학생 번호를 유지할 수 있음
+#        list comprehension으로 작성하는 습관을 들이자
 
 # Python의 round 함수는 round_half_even 방식을 택함. 즉, 반올림하는 자리의 숫자가 정확히 5일 때, 앞자리가 짝수가 되도록 반올림함
 # cf. 우리가 흔히 사용하는 반올림은 half_up 방식(5 이상은 올림)임
@@ -18,10 +19,10 @@ d = int(66.5 + 0.5)  # 소수점이 5이상인 경우 1의 자릿수가 증가�
 print(round(a))  # 4
 print(round(b))  # 5
 print(round(c))  # 6
-print(d)
+print(d)  # 67
 
 
-# My_Solution -> 답을 맞히긴 했으나, round 함수로 인해 논리적 결함이 있음
+# My_Solution -> (실패) 답을 맞히긴 했으나, round 함수로 인해 논리적 결함이 있음
 n = map(int, input())
 scores = list(map(int, input().split()))
 avg = int(round(sum(scores) / len(scores), 0))  # 평균값
@@ -41,7 +42,7 @@ result = sorted(result, key=lambda x: (x[0], -x[1]), reverse=True)  # 높은 점
 print(avg, result[0][1] + 1)
 
 
-# Solution_2
+# Solution_2 -> half up 반올림, 하나의 for문으로 처리
 n = int(input())
 a = list(map(int, input().split()))
 ave = int((sum(a) / n) + 0.5)
@@ -59,6 +60,19 @@ for idx, x in enumerate(a):
             score = x
             res = idx + 1
 print(ave, res)
+
+
+# Solution_3 -> list comprehension 이용
+n = int(input())
+scores = list(map(int, input().split()))
+mean_score = int((sum(scores) / n) + 0.5)  # mean_score = int(round((sum(scores) / n), 0)) -> (X)
+
+lst = list(map(lambda x: abs(x - mean_score), scores))  # |점수-평균|
+min_lst = min(lst)
+
+result = [(i, std) for i, std in enumerate(scores) if abs(std - mean_score) == min_lst]
+result = sorted(result, key=lambda x: (x[-1], -x[0]), reverse=True)
+print(mean_score, result[0][0] + 1)
 
 
 # test case 1
