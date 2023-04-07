@@ -30,7 +30,7 @@ def digit_sum(x):
 
 
 n = int(input())  # 3
-numbers = list(input().split())  # 125 15232 97
+numbers = list(input().split())  # 문자로 받음. 125 15232 97
 print(digit_sum(numbers))
 
 
@@ -59,7 +59,7 @@ def digit_sum(x):
     sum = 0  # 자릿수를 더할 변수
     while x > 0:
         sum += x % 10
-        x = x // 10
+        x //= 10
     return sum
 
 
@@ -72,7 +72,7 @@ for x in a:  # list의 각 숫자에 접근
 print(result)
 
 
-# Solution_4 -> 문자열 이용
+# Solution_4 -> (pythonic한 방법) 문자열 이용
 n = int(input())
 a = list(map(int, input().split()))
 
@@ -93,17 +93,44 @@ for x in a:  # list의 각 숫자에 접근
 print(result)
 
 
-# test case 1
+# Solution_5
+import sys
+
+sys.stdin = open("input.txt", "r")
+
+n = int(input())
+total = list(map(int, input().split()))
+
+
+def digit_sum(x):  # 자릿수의 합 구하는 함수
+    string = str(x)
+    result = sum(int(string[i]) for i in range(len(string)))
+    return result
+
+
+result = list(map(digit_sum, total))
+max_sum = max(result)
+
+for i in range(n):
+    if max_sum == result[i]:
+        max_index = i  # max 값에 해당하는 게 2개 이상일 경우 index가 가장 작은 것을 출력
+        break
+
+with open("output6.txt", "a") as f:
+    print(total[max_index], file=f)
+
+
+# test_case 1
 # n = 3
 # numbers = 125 15232 97
 # return : 97
 
-# test case 2
+# test_case 2
 # n = 7
 # numbers = 137 460 603 40 521 128 125
 # return : 137
 
-# test case 3
+# test_case 3
 # n = 50
 # numbers = 401 100 932 79 822 233 192 18 491 965 34 477 255 948 906 959 528 949 200 138 886 66 535 337 493 154 500 717 336 99 849 390 578 659 853 216 590 417 447 724 507 208 675 377 824 780 708 482 790 127
 # return : 959
